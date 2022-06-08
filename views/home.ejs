@@ -1,20 +1,38 @@
 
 <%- include("partials/header"); -%>
+<div class="search_box">
+    <form action="" id="form2">
+        <div>
+            <input type="text" id="search">
+            <input type="button" id="submit_form" onclick="checkInput()" value="Submit">
+        </div>
+    </form>
+</div>
     <h1>Home</h1>
     <p> <%= startingContent %> </p>
 
 
   <%  posts.forEach(function(post){ %>
 
-    <h1><%=post.title%></h1>
-    <p>
-    <%=post.content.substring(0, 100) + " ..."%>
-    <a href="/posts/<%=post._id%>">Read More</a>
-    
-    </p>
+
+
+
+    <% post.content.reverse().forEach(function(item){ %>
+        <div class="post">
+        <p> posted by <%=post.name%></p>
+         <p> on date <%=item.createdat%> </p>
+      <h3> <%=item.title %> </h3>
+      <p> <%=item.pcontent %> </p>
+          </div>
+
+    <%}) %>
+    <br>
+    <br>
 
 
     <% }) %>
+
+
 
 
 <%- include("partials/footer"); -%>

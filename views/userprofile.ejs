@@ -1,0 +1,36 @@
+
+<%- include("partials/header"); -%>
+    <h1>Home</h1>
+
+       <h1><%=persons.name %> </h1>
+
+  <%  persons.content.forEach(function(item,index){ %>
+
+
+
+
+
+        <div class="post">
+       <p> posted on <%=item.createdat%> <p>
+      <h3> <%=item.title %> </h3>
+      <p> <%=item.pcontent %> </p>
+
+          <form action="/removepost" method="post">
+        <button type="submit" name="button" value="<%= persons._id + " " + index  %>">remove</button>
+          </form>
+          </div>
+
+    <%}) %>
+
+    <form class="" action="/founduser" method="post">
+  <button type="submit" name="button" value="<%=persons.name%>">compose</button>
+    </form>
+
+
+
+
+
+
+
+
+<%- include("partials/footer"); -%>

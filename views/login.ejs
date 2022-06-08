@@ -1,0 +1,136 @@
+
+
+    <!-- <h1>Login</h1>
+    <form class="" action="/login" method="post">
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" type="text" name="name">
+        <label>Password</label>
+        <textarea class="form-control" name="password" rows="5" cols="10"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" name="button">Login</button>
+    </form> -->
+
+    <!DOCTYPE html>
+    <html lang="en" dir="ltr">
+
+    <head>
+      <meta charset="utf-8">
+      <title>Daily Journal</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/styles.css">
+      <script src="/javascript/search.js" charset="utf-8"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <p class="navbar-brand">DAILY JOURNAL</p>
+          </div>
+            <ul class="nav navbar-nav navbar-right">
+              <li id="home"><a href="/">HOME</a></li>
+              <li id="about"><a href="/about">ABOUT US</a></li>
+              <!-- <li id="about"><a href="/compose">COMPOSE</a></li> -->
+              <li id="contact"><a href="/contact">CONTACT US</a></li>
+              <li id="contact"><a href="/login">LOGIN</a></li>
+              <li id="contact"><a href="/signup">SIGNUP</a></li>
+
+            </ul>
+        </div>
+      </nav>
+
+
+    <style media="screen">
+
+
+body {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+}
+
+.login {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+  font-family: 'Comfortaa', cursive;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  border-radius: 10px;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+}
+
+.form input {
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: 'Comfortaa', cursive;
+}
+
+.form input:focus {
+  background: #dbdbdb;
+}
+
+.form button {
+  font-family: 'Comfortaa', cursive;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4b6cb7;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:active {
+  background: #395591;
+}
+
+.form span {
+  font-size: 75px;
+  color: #4b6cb7;
+}
+    </style>
+
+      <body>
+
+
+
+        <div class="container">
+
+
+    <div class="login">
+      <%if(message!=""){%>
+      <div class="alert alert-danger" role="alert">
+      <p style="text-align:center;" ><strong><%=message%></strong> </p>
+      </div>
+      <%}%>
+      <div class="form">
+        <form class="login-form" action="/login" method="post">
+          <span class="material-icons">Login</span>
+          <input type="text" placeholder="  username"   name="name" id="input1" onkeypress="return event.charCode != 32" required/>
+          <input type="password" placeholder="password" name="password" required />
+
+          <button type="submit" name="button" >login</button>
+        </form>
+      </div>
+    </div>
+
+
+  <%- include("partials/footer"); -%>

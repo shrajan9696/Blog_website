@@ -1,6 +1,7 @@
 
 <%- include("partials/header"); -%>
     <h1>Compose</h1>
+    <h2> Welcome <%=name%> </h2>
     <form class="" action="/compose" method="post">
       <div class="form-group">
         <label>Title</label>
@@ -8,7 +9,7 @@
         <label>Post</label>
         <textarea class="form-control" name="postBody" rows="5" cols="30"></textarea>
       </div>
-      <button class="btn btn-primary" type="submit" name="button">Publish</button>
+      <button class="btn btn-primary" type="submit" name="button" value=<%=name%> >Publish</button>
     </form>
 
 <%- include("partials/footer"); -%>
