@@ -1,8 +1,102 @@
 
-<%- include("partials/header"); -%>
+
+
+
+    <!DOCTYPE html>
+    <html lang="en" dir="ltr">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>Quotopdeia24</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/styles.css">
+      <script src="/javascript/search.js" charset="utf-8"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <style media="screen">
+
+
+.myButton {
+	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+	background-color:#44c767;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+    </style>
+      <script type="text/javascript">
+
+        function removeProfile(){
+        let r=  confirm("Click OK to permanently delete your account");
+        if(r==true){
+          document.getElementById("remprofile").submit();
+        }
+        else{
+          return;
+        }
+        }
+
+
+
+
+      </script>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <p class="navbar-brand"  style="color:blue;">Quotopedia24</p>
+          </div>
+            <ul class="nav navbar-nav navbar-right" style="    font-size: larger;  font-weight: bold;">
+              <li id="home"><a style="color:blue;" href="/">HOME</a></li>
+              <li id="about"><a style="color:blue;" href="/about">ABOUT US</a></li>
+              <!-- <li id="about"><a href="/compose">COMPOSE</a></li> -->
+              <li id="contact"><a style="color:blue;" href="/contact">CONTACT US</a></li>
+              <li id="contact"><a style="color:blue;" href="/login">LOGIN</a></li>
+              <li id="contact"><a style="color:blue;" href="/signup">SIGNUP</a></li>
+
+            </ul>
+        </div>
+      </nav>
+
+
+      <body>
+
+
+
+        <div class="container">
+
     <h1>Home</h1>
 
        <h1><%=persons.name %> </h1>
+
+       <form class="" id ="remprofile" action="/removeprofile" method="post">
+
+       <button type="submit" class="myButton" name="button" value="<%=persons._id%>" onclick="removeProfile()" > remove profile</button>
+       </form>
+
+      <textarea name="name" style="    width: -webkit-fill-available;      width: -webkit-fill-available;
+    font-size: large;
+    text-align: center;color:red;  letter-spacing: 3px; font-family: cursive;
+    margin: auto;" readonly>localhost:3000/shareprofile/<%=persons.name%></textarea>
+
 
   <%  persons.content.forEach(function(item,index){ %>
 
@@ -10,21 +104,21 @@
 
 
 
-        <div class="post">
-       <p> posted on <%=item.createdat%> <p>
-      <h3> <%=item.title %> </h3>
-      <p> <%=item.pcontent %> </p>
+        <div class="post hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(<%=item.avatar%>);">
+       <p style="color:white;"> posted on <%=item.createdat%> <p>
+      <h3 class="title" style="color:white;"> <%=item.title %> </h3>
+      <p class="content" style="color:white;"> <%=item.pcontent %> </p>
 
           <form action="/removepost" method="post">
-        <button type="submit" name="button" value="<%= persons._id + " " + index  %>">remove</button>
+        <button type="submit" class="myButton" name="button" value="<%= persons._id + " " + index  %>">remove</button>
           </form>
           </div>
 
     <%}) %>
 
-    <form class="" action="/founduser" method="post">
-  <button type="submit" name="button" value="<%=persons.name%>">compose</button>
-    </form>
+       <form class="comp-form" action="/founduser" method="post">
+        <button type="submit" name="button" class="composenewarticle" value="<%=persons.name%>">Compose New Article</button>
+        </form>
 
 
 

@@ -1,0 +1,80 @@
+
+
+
+
+    <!DOCTYPE html>
+    <html lang="en" dir="ltr">
+
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Quotopedia24</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/styles.css">
+      <script src="/javascript/search.js" charset="utf-8"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+
+
+
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <p class="navbar-brand"  style="color:blue;">Quotopedia24</p>
+          </div>
+            <ul class="nav navbar-nav navbar-right" style="    font-size: larger;  font-weight: bold;">
+              <li id="home"><a style="color:blue;" href="/">HOME</a></li>
+              <li id="about"><a style="color:blue;" href="/about">ABOUT US</a></li>
+              <!-- <li id="about"><a href="/compose">COMPOSE</a></li> -->
+              <li id="contact"><a style="color:blue;" href="/contact">CONTACT US</a></li>
+              <li id="contact"><a style="color:blue;" href="/login">LOGIN</a></li>
+              <li id="contact"><a style="color:blue;" href="/signup">SIGNUP</a></li>
+
+            </ul>
+        </div>
+      </nav>
+      <style media="screen">
+
+      </style>
+
+      <body>
+
+
+
+        <div class="container">
+
+    <h1>Home</h1>
+
+       <h1><%=persons.name %> </h1>
+
+
+
+
+  <%  persons.content.forEach(function(item,index){ %>
+
+
+
+
+
+        <div class="post hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(<%=item.avatar%>);">
+       <p style="color:white;"> posted on <%=item.createdat%> <p>
+      <h3 style="color:white;" class="title"> <%=item.title %> </h3>
+      <p  style="color:white;" class="content"> <%=item.pcontent %> </p>
+
+
+          </div>
+
+    <%}) %>
+
+
+
+
+
+
+
+
+
+
+<%- include("partials/footer"); -%>

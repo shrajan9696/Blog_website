@@ -2,12 +2,20 @@ html {
   min-height: 100%;
   position: relative;
 }
+body{
+  /* background: rgb(180,58,157);
+background: linear-gradient(90deg, rgba(180,58,157,0.8300362381280637) 7%, rgba(29,87,253,1) 47%, rgba(252,69,184,0.7067869384081757) 90%); */
+background: rgb(225,233,255);
+background: linear-gradient(90deg, rgba(225,233,255,1) 19%, rgba(55,77,255,1) 50%, rgba(228,244,255,1) 83%);
+color: blue;
+}
 
 .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
 }
 .navbar {
+  color:blue;
     padding-top: 15px;
     padding-bottom: 15px;
     border: 0;
@@ -15,9 +23,17 @@ html {
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
+    background: rgb(131,250,255);
+  background: linear-gradient(90deg, rgba(131,250,255,1) 0%, rgba(124,253,237,1) 54%, rgba(141,255,240,1) 99%);
+
 }
 .navbar-nav  li a:hover {
-    color: #1abc9c !important;
+  color:blue;
+    /* color: #1abc9c !important; */
+}
+
+.nav .navbar-right .navbar-nav {
+  color:blue;
 }
 
 .footer-padding {
@@ -30,18 +46,228 @@ html {
 	bottom: 0;
 	width: 100%;
 	height: 60px;
-	background-color: #1abc9c;
+  background: rgb(131,250,255);
+  background: linear-gradient(90deg, rgba(131,250,255,1) 0%, rgba(124,253,237,1) 54%, rgba(141,255,240,1) 99%);
 }
 
 .footer p {
 	margin-top: 25px;
 	font-size: 12px;
-  color: #fff;
+  color: blue;
 }
 
 .post{
-  border:2px solid red;
+
   margin: 5px;
   padding: 5px;
+  background: rgb(131,250,255);
+background: linear-gradient(90deg, rgba(131,250,255,1) 0%, rgba(124,253,237,1) 54%, rgba(141,255,240,1) 99%);
 
+-webkit-box-shadow: -1px 1px 16px 11px rgba(24,45,255,0.94);
+box-shadow: -1px 1px 16px 11px rgba(24,45,255,0.94);
+font-family: 'Roboto', sans-serif;
+
+
+}
+
+
+
+.comp-form{
+  text-align: center;
+margin-top: 15px;
+margin-bottom: 20px;
+}
+
+.comp-form button {
+  font-family: 'Comfortaa', cursive;
+  text-transform: uppercase;
+  outline: 0;
+  /* background: #4b6cb7; */
+  width: auto;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px;
+  /* color: #FFFFFF; */
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  text-align: center;
+  margin:auto;
+  background: rgb(131,250,255);
+  background: linear-gradient(90deg, rgba(131,250,255,1) 0%, rgba(124,253,237,1) 54%, rgba(141,255,240,1) 99%);
+  color: blue;
+  font-weight: bold;
+
+}
+
+.form button:active {
+  background: #395591;
+}
+
+.content{
+  text-align :center;
+  /* color:#1d62fd; */
+  font-size: 30px;
+  color:blue;
+  font-weight: bold;
+  text-shadow: 1px 3px 6px #c30e0e;
+  letter-spacing: 3px;
+
+}
+
+.title{
+
+  color:blue;
+  text-align: center;
+  text-shadow: 1px 3px 6px #c30e0e;
+  margin-top:36px;
+}
+
+#search{
+  width: 226px;
+  height: 28px;
+  border-radius: 12px;
+}
+
+.createdby{
+  text-align: right;
+  font-size:20px;
+  color:blue;
+  font-family: 'Comfortaa', cursive;
+}
+
+.startingcontent{
+  color: rgb(131,250,255);
+  font-size: 20px;
+background-color: blue;
+border-radius: 8px;
+padding: 14px;
+font-weight: bold;
+margin-bottom: 30px;
+}
+
+.composenewarticle{
+  background: rgb(131,250,255);
+  background: linear-gradient(90deg, rgba(131,250,255,1) 0%, rgba(124,253,237,1) 54%, rgba(141,255,240,1) 99%);
+  color: blue;
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+/* .image-text-overlay {
+  width: 100%;
+  height: 225px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  // text overlay rules
+  &.text-white {
+    color: white;
+  }
+  .overlay-title {
+    font-size: 27px;
+    text-transform: uppercase;
+  }
+  .overlay-subtext {
+    font-size: 20px;
+  }
+  // shared color overlay rules
+  .overlay-white, .overlay-black {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0.5;
+  }
+  // black overlay
+  .overlay-black {
+    background: #000;
+  }
+  // white overlay
+  .overlay-white {
+    background: #fff;
+  }
+}
+//shared text styles
+.text-top-left, .text-top-center, .text-top-right
+, .text-middle-left, .text-middle-center, .text-middle-right
+, .text-bottom-left, .text-bottom-right, .text-bottom-center{
+  display: table;
+  p {
+    display: table-cell;
+    position: relative;
+    z-index: 2;
+    padding: 15px 20px 15px 20px;
+  }
+}
+// Specifics for top row text
+.text-top-left p {
+  vertical-align: top;
+  text-align: left;
+}
+.text-top-center p {
+  vertical-align: top;
+  text-align: center;
+}
+.text-top-right p {
+  vertical-align: top;
+  text-align: right;
+}
+// Specifics for middle row text
+.text-middle-left p {
+  vertical-align: middle;
+  text-align: left;
+}
+.text-middle-center p {
+  vertical-align: middle;
+  text-align: center;
+}
+.text-middle-right p {
+  vertical-align: middle;
+  text-align: right;
+}
+// Specifics for bottom row text
+.text-bottom-left p {
+  vertical-align: bottom;
+  text-align: left;
+}
+.text-bottom-center p {
+  vertical-align: bottom;
+  text-align: center;
+}
+.text-bottom-right p {
+  vertical-align: bottom;
+  text-align: right;
+}
+
+
+// Overriding bootstrap a tad...
+@media (min-width: 1200px) {
+  .container {
+      width: 1200px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .col-md-4 {
+    padding-bottom: 25px;
+  }
+} */
+
+.hero {
+	background-color: #000000;
+	/* background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg); */
+  background-position: center;
+	background-size: cover;
+	/* color: #ffffff; */
+  color:blue;
+	padding: 1em;
+	text-align: center;
 }

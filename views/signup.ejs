@@ -29,104 +29,153 @@
         <html lang="en" dir="ltr">
 
         <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
           <meta charset="utf-8">
-          <title>Daily Journal</title>
-          <meta charset="utf-8">
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+          <title>Quotopedia24</title>
+
+
+          <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+          <link rel="stylesheet" href=
+         "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
           <link rel="stylesheet" href="/css/styles.css">
           <script src="/javascript/search.js" charset="utf-8"></script>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
+
+
+
+             <link rel="stylesheet" href=
+         "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                 integrity=
+         "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                 crossorigin="anonymous">
+
+
+
           <nav class="navbar navbar-default">
             <div class="container">
               <div class="navbar-header">
-                <p class="navbar-brand">DAILY JOURNAL</p>
+                <p class="navbar-brand" style="color:blue;">Quotpedia24</p>
+                <div class="search_box">
+                    <form action="" id="form2">
+                        <div>
+                            <input type="text" id="search" placeholder="search by username or topic" autocomplete="off">
+                            <input type="button" id="submit_form" onclick="checkInput()" value="Submit">
+                        </div>
+                    </form>
+                </div>
               </div>
-                <ul class="nav navbar-nav navbar-right">
-                  <li id="home"><a href="/">HOME</a></li>
-                  <li id="about"><a href="/about">ABOUT US</a></li>
+                <ul class="nav navbar-nav navbar-right" style="font-size: larger;  font-weight: bold;">
+                  <li id="home" ><a  style="color:blue;" href="/">HOME</a></li>
+                  <li id="about"><a style="color:blue;" href="/about">ABOUT US</a></li>
                   <!-- <li id="about"><a href="/compose">COMPOSE</a></li> -->
-                  <li id="contact"><a href="/contact">CONTACT US</a></li>
-                  <li id="contact"><a href="/login">LOGIN</a></li>
-                  <li id="contact"><a href="/signup">SIGNUP</a></li>
+                  <li id="contact"><a style="color:blue;" href="/contact">CONTACT US</a></li>
+                  <li id="contact"><a  style="color:blue;" href="/login">LOGIN</a></li>
+                  <li id="contact"><a style="color:blue;" href="/signup">SIGNUP</a></li>
 
                 </ul>
+
             </div>
+
           </nav>
 
 
         <style media="screen">
 
+          body {
+            background: rgb(225,233,255);
+            background: linear-gradient(90deg, rgba(225,233,255,1) 19%, rgba(55,77,255,1) 50%, rgba(228,244,255,1) 83%);
+          }
 
-    body {
-      background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-    }
+          .login {
+            width: 360px;
+            padding: 8% 0 0;
+            margin: auto;
+            font-family: 'Comfortaa', cursive;
 
-    .login {
-      width: 360px;
-      padding: 8% 0 0;
-      margin: auto;
-      font-family: 'Comfortaa', cursive;
-    }
+          }
 
-    .form {
-      position: relative;
-      z-index: 1;
-      background: #FFFFFF;
-      border-radius: 10px;
-      max-width: 360px;
-      margin: 0 auto 100px;
-      padding: 45px;
-      text-align: center;
-    }
+          .form {
+            position: relative;
+            z-index: 1;
+            <!-- background: #FFFFFF; -->
+            border-radius: 10px;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            background: linear-gradient(90deg, rgba(131,250,255,1) 0%, rgba(124,253,237,1) 54%, rgba(141,255,240,1) 99%);
 
-    .form input {
-      outline: 0;
-      background: #f2f2f2;
-      width: 100%;
-      border: 0;
-      border-radius: 5px;
-      margin: 0 0 15px;
-      padding: 15px;
-      box-sizing: border-box;
-      font-size: 14px;
-      font-family: 'Comfortaa', cursive;
-    }
+            -webkit-box-shadow: -1px 1px 16px 11px rgba(24,45,255,0.94);
+            box-shadow: -1px 1px 16px 11px rgba(24,45,255,0.94);
+            font-family: 'Roboto', sans-serif;
 
-    .form input:focus {
-      background: #dbdbdb;
-    }
+          }
 
-    .form button {
-      font-family: 'Comfortaa', cursive;
-      text-transform: uppercase;
-      outline: 0;
-      background: #4b6cb7;
-      width: 100%;
-      border: 0;
-      border-radius: 5px;
-      padding: 15px;
-      color: #FFFFFF;
-      font-size: 14px;
-      -webkit-transition: all 0.3 ease;
-      transition: all 0.3 ease;
-      cursor: pointer;
-    }
+          .form input {
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            border-radius: 5px;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+            font-family: 'Comfortaa', cursive;
+            color:black;
 
-    .form button:active {
-      background: #395591;
-    }
+          }
 
-    .form span {
-      font-size: 75px;
-      color: #4b6cb7;
-    }
+          .form input:focus {
+            background: #dbdbdb;
+          }
+
+          .form button {
+            font-family: 'Comfortaa', cursive;
+            text-transform: uppercase;
+            outline: 0;
+            background: blue;
+            width: 100%;
+            border: 0;
+            border-radius: 5px;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+
+          }
+
+          .form button:active {
+            background: #395591;
+          }
+
+          .form span {
+            font-size: 75px;
+            color: #4b6cb7;
+          }
+
+
+          form i {
+           margin-left: -30px;
+           cursor: pointer;
+       }
+
+
         </style>
 
           <body>
             <div class="container">
 
 
-        <div class="login">
+
 
               <div class="login">
                 <%if(message!=""){%>
@@ -136,13 +185,37 @@
                 <%}%>
           <div class="form">
             <form class="login-form" action="/signup" method="post">
-              <span class="material-icons">Register</span>
-              <input type="text" placeholder="  create your username"   name="name" id="input1" onkeypress="return event.charCode != 32" required/>
-              <input type="password" placeholder="crete your password" name="password" required />
-
+              <span class="material-icons" style="color:blue;">Register</span>
+              <input type="text" placeholder="  create your username"   name="name" id="input1" onkeypress="return event.charCode != 32" required autofocus autocomplete="off"/>
+              <input type="password" placeholder="create your password" name="password" id="password" required />
+              <i class="bi bi-eye-slash" style="color:black;"
+                   id="togglePassword"></i>
               <button type="submit" name="button" >Signup</button>
+              <br>
+              <a href="/login" style="color:red;">already an user</a>
             </form>
           </div>
         </div>
 
+
+        <script>
+               const togglePassword = document
+                   .querySelector('#togglePassword');
+
+               const password = document.querySelector('#password');
+
+               togglePassword.addEventListener('click', () => {
+
+                   // Toggle the type attribute using
+                   // getAttribure() method
+                   const type = password
+                       .getAttribute('type') === 'password' ?
+                       'text' : 'password';
+
+                   password.setAttribute('type', type);
+
+                   // Toggle the eye and bi-eye icon
+                   this.classList.toggle('bi-eye');
+               });
+           </script>
       <%- include("partials/footer"); -%>

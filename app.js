@@ -1,17 +1,20 @@
 //jshint esversion:6
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
+const cloudinary = require("cloudinary").v2;
+const path= require("path");
 
-mongoose.connect("mongodb://localhost:27017/blogDB");
 
-const blogSchema = new mongoose.Schema({
-  title:String,
-  content:String
-});
+
+
+const upload = require(__dirname+"/utils/multer");
+
+mongoose.connect("mongodb+srv://Quotopedia24:shrajanjain@cluster0.6x9bzfs.mongodb.net/blogDB");
+
 
 const userSchema = new mongoose.Schema({
   name:String,
@@ -19,15 +22,17 @@ const userSchema = new mongoose.Schema({
   content:[{
     title:String,
     pcontent:String,
-    createdat:String
+    createdat:String,
+    avatar:String,
+    cloudinary_id:String
   }]
 });
 
 
-const Post = mongoose.model("Post",blogSchema);
+
 const User = mongoose.model("User",userSchema);
 
-const homeStartingContent ="This is a basic blog website where you can post your own blogs and delete them Create some beautiful and unique blog it's easy."
+const homeStartingContent ="Quotopedia24 is a basic blog website where you can post your own quotes and delete them . Lets bundle up your thoughts and quotes  it's easy."
 const aboutContent = "This is a basic blog website where you can post your own blogs and delete them Create some beautiful and unique blog it's easy."
 
 const contactContent = "email:jainshrajan482@gmail.com"
@@ -38,7 +43,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-// let posts = [];
+
 
 app.get("/", function(req, res){
 
@@ -64,9 +69,7 @@ app.get("/contact", function(req, res){
   res.render("contact", {contactContent: contactContent});
 });
 
-// app.get("/compose", function(req, res){
-//   res.render("compose");
-// });
+
 
 app.get("/login",function(req,res){
   res.render("login",{message:""});
@@ -85,7 +88,7 @@ app.post("/signup",function(req,res){
     }
     else{
       if(docs){
-        console.log("person already exists");
+        // console.log("person already exists");
         res.render("signup",{message:"username exists already. Please change!"});
       }
       else{
@@ -110,26 +113,27 @@ app.post("/signup",function(req,res){
 });
 
 app.post("/login",function(req,res){
+  // console.log(process.env.API);
   const name=req.body.name;
   const password=req.body.password;
   User.findOne({name:name},function(err,founduser){
     if(err){
-      console,log(err);
+      console.log(err);
     }
     else {
       if(founduser){
         if(founduser.password==password){
-          console.log("successfully validated");
+          // console.log("successfully validated");
           res.render("userprofile",{persons:founduser});
         }
         else{
-          console.log("wrong credentials");
+          // console.log("wrong credentials");
           res.render("login",{message:"wrong credentials"});
 
         }
       }
       else   {
-        console.log("wrong credentials");
+        // console.log("wrong credentials");
         res.render("login",{message:"wrong credentials"});
       }
 
@@ -137,43 +141,58 @@ app.post("/login",function(req,res){
   })
 });
 
-app.post("/compose", function(req, res){
-  // const post = {
-  //   title: req.body.postTitle,
-  //   content: req.body.postBody
-  // };
+app.post("/compose", upload.single("image"), function (req, res){
+
     var mydate1 = new Date();
     mydate1.toString();
-   newpost={
-     title : req.body.postTitle,
-   pcontent : req.body.postBody,
-   createdat: mydate1
-   }
+
 
    const name = req.body.button;
-  User.findOneAndUpdate(
-    {name:name},
-    {$push:{content:newpost}},
-    function(err){
-      if(err){
-        console.log("error");
+   cloudinary.config({
+     cloud_name: process.env.CLOUD,
+     api_key: process.env.API,
+     api_secret: process.env.APISECRET
+   });
+  cloudinary.uploader.upload(req.file.path,
+   function(error, result) {
+      if(error){
+        console.log(error);
       }
       else{
-        console.log("updated successfully");
-          res.redirect("/");
+        // console.log(result);
+        const newpost={
+          title : req.body.postTitle,
+        pcontent : req.body.postBody,
+        createdat: mydate1,
+         avatar:   result.secure_url,
+         cloudinary_id:   result.cloudinary_id
+        }
+        User.findOneAndUpdate(
+          {name:name},
+          {$push:{content:newpost}},
+          function(err){
+            if(err){
+              console.log("error");
+            }
+            else{
+              // console.log("updated successfully");
+                // res.redirect("/");
+                User.findOne({name:name},function(err,docs){
+                  if(err){
+                    console.log(err);
+                  }
+                  else{
+                    res.render("userprofile",{persons:docs});
+                  }
+                })
+
+            }
+          }
+        );
+
       }
-    }
-  );
+    });
 
-
-
-  // User.findOne({name:name},function(err,docs){
-  //   if(err) console.log(err);
-  //   else console.log(docs);
-  // })
-
-  // res.redirect("/");
-  // console.log("saved");
 
 
 
@@ -182,28 +201,10 @@ app.post("/compose", function(req, res){
 
 
 
-// Saving Data into MongoDB
 
 
 
-// newUser.save(function(err){
-//   if(!err){
-//
-//     User.findOne({name:name},(err,found)=>{
-//       if(err){
-//         console.log(err);
-//       }
-//       else{
-//         console.log(found);
-//       }
-//       res.redirect("/");
-//     });
-//   }
-// })
 
-
-
-// posts.push(post);
 app.post("/founduser",function(req,res){
   const name=req.body.button;
   res.render("compose",{name:name});
@@ -213,15 +214,15 @@ app.post("/removepost",function(req,res){
   const str=req.body.button;
    const personid = str.substring(0, str.indexOf(' '));
   const postindex = Number(str.substring(str.indexOf(' ') + 1));
-  console.log(req.body.button);
-  console.log(personid);
-  console.log(postindex);
+  // console.log(req.body.button);
+  // console.log(personid);
+  // console.log(postindex);
   User.findOne({_id:personid},function(err,docs){
     if(err){
       console.log(err);
     }
     else{
-      console.log("index found");
+      // console.log("index found");
     docs.content.splice(postindex,1);
 
     docs.save(function(error){
@@ -229,7 +230,7 @@ app.post("/removepost",function(req,res){
         console.log(error);
       }
       else{
-        console.log("deleted successfully");
+        // console.log("deleted successfully");
         res.render("userprofile",{persons:docs});
       }
     })
@@ -244,37 +245,34 @@ app.post("/removepost",function(req,res){
 
 
 
-  // posts.forEach(function(post){
-  //   const storedTitle = _.lowerCase(post.title);
-  //
-  //   if (storedTitle === requestedTitle) {
-  //     res.render("post", {
-  //       title: post.title,
-  //       content: post.content
-  //     });
-  //   }
-  // });
 
-//   Post.findOne({_id:requestedPostId},function(err,post){
-//     res.render("post",{
-//       title:post.title,
-//       content:post.content
-//     });
-//   });
-//
-// });
-//
-// app.post("/delete",function(req,res){
-//   const id = req.body.id;
-//   Post.findByIdAndRemove(id,function(err){
-//     if(err){
-//       console.log(err);
-//     }
-//   });
-//   res.redirect("/");
-// });
+app.post("/removeprofile",function(req,res){
+  const id = req.body.button;
+  User.findByIdAndRemove(id,function(err){
+    if(err){
+      console.log(err);
+    }
+  });
+  // console.log("profile removed");
+  res.redirect("/");
+});
 
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.get("/shareprofile/:username",function(req,res){
+  const username = req.params.username;
+  // const id = req.body.button;
+  //  console.log(id);
+   console.log(username);
+   User.findOne({name:username},function(err,docs){
+     if(!err){
+       res.render("share",{persons:docs})
+       // console.log(docs);
+     }
+   })
+
+})
+
+
+app.listen(process.env.PORT || 3000,function(){
+  console.log("server is running at port 3000");
 });

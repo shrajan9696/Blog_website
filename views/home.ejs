@@ -1,36 +1,53 @@
 
 <%- include("partials/header"); -%>
-<div class="search_box">
-    <form action="" id="form2">
-        <div>
-            <input type="text" id="search">
-            <input type="button" id="submit_form" onclick="checkInput()" value="Submit">
-        </div>
-    </form>
-</div>
+
     <h1>Home</h1>
-    <p> <%= startingContent %> </p>
+    <p class="startingcontent"> <%= startingContent %> </p>
 
 
   <%  posts.forEach(function(post){ %>
 
 
 
-
+    <%if(post.content.length!=0){%>
+        <h2 style="text-align:left;">~ <%=post.name%></h2>
     <% post.content.reverse().forEach(function(item){ %>
-        <div class="post">
-        <p> posted by <%=post.name%></p>
-         <p> on date <%=item.createdat%> </p>
-      <h3> <%=item.title %> </h3>
-      <p> <%=item.pcontent %> </p>
+
+        <div class="hero post" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(<%=item.avatar%>);">
+
+
+         <p style="float:left; color:white"><%=item.createdat%> </p>
+
+      <h3 class="title" style="color:white;"> <%=item.title %> </h3>
+
+      <p class="content" style="color:white;"> <%=item.pcontent %> </p>
+
+      <p style="text-align:right; color:white;" class="createdby">~ <%=post.name%></p>
+
+
           </div>
 
     <%}) %>
     <br>
     <br>
+    <%}%>
+
+    <!-- <div class="col-md-4 col-xs-12">
+         <div class="image-text-overlay text-top-center" style="background-image: url(https://images.iphonephotographyschool.com/22682/How-To-Blur-Background-On-iPhone.jpg);">
+           <p>
+             <span class="overlay-title">Top center</span><br>
+             <span class="overlay-subtext">This is subtext.</span>
+           </p>
+           <div class="overlay-white"></div>
+         </div>
+    </div> -->
 
 
     <% }) %>
+
+
+
+
 
 
 
