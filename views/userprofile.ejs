@@ -50,9 +50,9 @@
         if(r==true){
           document.getElementById("remprofile").submit();
         }
-        else{
-          return;
-        }
+        // else{
+        //   return;
+        // }
         }
 
 
@@ -93,9 +93,9 @@
        </form>
 
       <textarea name="name" style="    width: -webkit-fill-available;      width: -webkit-fill-available;
-    font-size: large;
-    text-align: center;color:red;  letter-spacing: 3px; font-family: cursive;
-    margin: auto;" readonly>localhost:3000/shareprofile/<%=persons.name%></textarea>
+
+    text-align: center;color:red;  font-family: cursive;
+    margin: auto;" readonly>https://radiant-ocean-70541.herokuapp.com/shareprofile/<%=persons.name%></textarea>
 
 
   <%  persons.content.forEach(function(item,index){ %>
