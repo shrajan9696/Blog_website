@@ -149,9 +149,9 @@ app.post("/compose", upload.single("image"), function (req, res){
 
    const name = req.body.button;
    cloudinary.config({
-     cloud_name:quotopedia24,
-     api_key: 512418771847945,
-     api_secret: JoFV_tvv8FVHUauESime1CX4-uc
+     cloud_name:"quotopedia24",
+     api_key: "512418771847945",
+     api_secret: "JoFV_tvv8FVHUauESime1CX4-uc"
    });
   cloudinary.uploader.upload(req.file.path,
    function(error, result) {
