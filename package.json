@@ -10,9 +10,7 @@
   "engines": {
     "node": "16.14.2"
   },
-  {
-   "stack": "heroku-22"
-},
+  
   "dependencies": {
     "body-parser": "^1.18.3",
     "cloudinary": "^1.30.0",
