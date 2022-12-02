@@ -178,7 +178,8 @@ app.post("/compose", upload.single("image"), function (req, res){
               // console.log("updated successfully");
                 // res.redirect("/");
                 User.findOne({name:name},function(err,docs){
-                  if(err){
+                  if(err)
+                  {
                     console.log(err);
                   }
                   else{
